@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 @tailwind base;
 // 
 // ITCSS https://dev.to/carlillo/understanding-itcss-real-case-using-itcss-in-a-ghostcms-blog-1p9b
@@ -27,4 +28,6 @@
 @import './itcss/elements/elements';
 Utilities — utilities and helper classes with ability to override anything which goes before in the triangle.
 @tailwind components;
+/* purgecss end ignore */
 @tailwind utilities;
+

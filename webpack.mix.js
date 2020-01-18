@@ -1,5 +1,7 @@
 let mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 require('laravel-mix-purgecss');
+
 let SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const svgSpriteDestination = "../addons/williamastrom/pixney/rocket-theme/resources/views/partials/svgs.twig";
 const svgSourcePath = "addons/williamastrom/pixney/rocket-theme/resources/svgs/*.svg";
@@ -27,8 +29,12 @@ mix
     //     ]
     //  })
 
-    .sourceMaps()
-    .version()
+    .options({
+        processCssUrls: false,
+        postCss: [tailwindcss('./tailwind.js')],
+    })
+
+   
     .browserSync({
         proxy: 'stengarde.test',
         files: [
@@ -64,7 +70,7 @@ if (mix.inProduction()) {
         extensions: ['html', 'js', 'php', 'vue', 'twig'],
 
     })
-        .version();
+    .sourceMaps().version();
 }
 
 
