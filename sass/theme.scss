@@ -1,0 +1,30 @@
+@tailwind base;
+// 
+// ITCSS https://dev.to/carlillo/understanding-itcss-real-case-using-itcss-in-a-ghostcms-blog-1p9b
+//
+
+// Settings used with preprocessors and contain font, colors definitions, etc. 
+// In this layer is common define the variables that can customize the template.
+@import './itcss/settings/settings';
+// Tools — globally used mixins and functions. This layer is only used if we 
+// use a preprocessor as SASS.
+@import './itcss/tools/tools';
+// Generic — reset and/or normalize styles, box-sizing definition, etc. It is 
+// important to note that this is the first layer of the triangle that 
+// generates CSS.
+@import './itcss/generic/generic';
+// Components — specific UI components. The components of our page, for 
+// example button, card, concrete-list, etc..
+@import './itcss/components/components.scss';
+// Objects — class-based selectors which define undecorated design patterns, 
+// for example media object known from OOCSS such as list, radio-button. 
+// The Daniel Fornell’s codepen https://codepen.io/collection/DmzVOM/ shows 
+// you a list of objects designed using this architecture.
+@import './itcss/objects/objects';
+// Elements — styling for bare HTML elements (like H1, A, header, footer, …). 
+// These come with default styling from the browser so we must to redefine 
+// them here.
+@import './itcss/elements/elements';
+Utilities — utilities and helper classes with ability to override anything which goes before in the triangle.
+@tailwind components;
+@tailwind utilities;
