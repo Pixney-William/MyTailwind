@@ -1,10 +1,10 @@
 let mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss');
 require('laravel-mix-purgecss');
 
-let SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const svgSpriteDestination = "../addons/williamastrom/pixney/rocket-theme/resources/views/partials/svgs.twig";
 const svgSourcePath = "addons/williamastrom/pixney/rocket-theme/resources/svgs/*.svg";
+let SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+const tailwindcss = require('tailwindcss');
 
 mix
     .disableSuccessNotifications()
