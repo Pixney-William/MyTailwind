@@ -26,7 +26,8 @@
 // These come with default styling from the browser so we must to redefine 
 // them here.
 @import './itcss/elements/elements';
-Utilities — utilities and helper classes with ability to override anything which goes before in the triangle.
+//Utilities — utilities and helper classes with ability to override anything which goes before in the triangle.
+@import './itcss/utilities/utilities';
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
