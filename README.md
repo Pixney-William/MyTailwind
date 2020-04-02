@@ -1,4 +1,5 @@
 # MyTailwind
-`npm install @fullhuman/postcss-purgecss --save-dev`
-`npm install tailwindcss --save-dev`
-`./node_modules/.bin/tailwind init`
+
+```
+npm install tailwindcss laravel-mix-purgecss svg-spritemap-webpack-plugin --save-dev && npx tailwindcss init 
+```

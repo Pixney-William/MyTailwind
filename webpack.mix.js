@@ -1,76 +1,65 @@
-let mix = require('laravel-mix');
 require('laravel-mix-purgecss');
-
-const svgSpriteDestination = "../addons/williamastrom/pixney/rocket-theme/resources/views/partials/svgs.twig";
-const svgSourcePath = "addons/williamastrom/pixney/rocket-theme/resources/svgs/*.svg";
-let SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+let mix = require('laravel-mix');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
+const svgSpriteDestination = "resources/views/partials/svgs.twig";
+const svgSourcePath = "resources/svgs/*.svg";
 const tailwindcss = require('tailwindcss');
 
-mix
-    .disableSuccessNotifications()
-    .js('addons/williamastrom/pixney/rocket-theme/resources/js/app.js', 'js')
-    .sass('addons/williamastrom/pixney/rocket-theme/resources/sass/theme.scss', 'css')
 
-    //   .webpackConfig({
-    //     plugins: [
-    //        new SVGSpritemapPlugin(
-    //           svgSourcePath, {
-    //              output: {
-    //                 filename: svgSpriteDestination,
-    //                 svgo: {
-    //                    removeTitle: true,
-    //                 }
-    //              },
-    //              sprite: {
-    //                 prefix: false
-    //              }
-    //           }
-    //        )
-    //     ]
-    //  })
+// Do we want notifications?
+mix.disableSuccessNotifications();
 
-    .options({
-        processCssUrls: false,
-        postCss: [tailwindcss('./tailwind.js')],
-    })
+// Transpile js and sass
+mix.js('resources/js/app.js', 'js')
+    .sass('resources/sass/theme.scss', 'css');
 
-   
-    .browserSync({
-        proxy: 'stengarde.test',
-        files: [
-            'public/js/**/*.js',
-            'public/css/**/*.css',
-            'addons/stengarde/pixney/stengarde-theme/resources/views/**/*.twig',
-            'addons/williamastrom/pixney/**/*.twig'
-        ]
-    });
+mix.options({
+    processCssUrls: false,
+    postCss: [tailwindcss('./tailwind.js')],
+});
 
+mix.browserSync({
+    proxy: 'domain.com',
+    files: [
+        'public/js/**/*.js',
+        'public/css/**/*.css',
+        'resources/views/**/*.html',
+    ]
+});
 
+// When we need to create svg sprites.
+mix.webpackConfig({
+    plugins: [
+        new SVGSpritemapPlugin(
+            svgSourcePath, {
+            output: {
+                filename: svgSpriteDestination,
+                svgo: {
+                    removeTitle: true,
+                }
+            },
+            sprite: {
+                prefix: false
+            }
+        }
+        )
+    ]
+});
 
-
+// Purge css 
 if (mix.inProduction()) {
+
     mix.purgeCss({
         enabled: true,
-
+        content: ['index.html', '**/*.js', '**/*.html', '**/*.vue'],
         whitelist: [
-            'o-navbar--shadow',
-            'o-navbar--white-bg',
-            'pm--toggle',
-            'pm--open',
-            'pm--open-menu',
-            'in-viewport'
         ],
-
-        globs: [
-            path.join(__dirname, 'addons/stengarde/pixney/stengarde-theme/resources/**/*.twig'),
-            path.join(__dirname, 'addons/stengarde/pixney/stengarde-theme/resources/**/*.vue'),
-
-        ],
-
+        whitelistPatterns: [/red$/],
+        whitelistPatternsChildren: [/blue$/],
         extensions: ['html', 'js', 'php', 'vue', 'twig'],
 
-    })
-    .sourceMaps().version();
+    }).sourceMaps().version();
+
 }
 
 
