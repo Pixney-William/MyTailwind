@@ -1,5 +1,5 @@
 require('laravel-mix-purgecss');
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const svgSpriteDestination = "resources/views/partials/svgs.twig";
 const svgSourcePath = "resources/svgs/*.svg";
@@ -61,18 +61,3 @@ if (mix.inProduction()) {
     }).sourceMaps().version();
 
 }
-
-
-
-/*
- |--------------------------------------------------------------------------
- | Statamic Control Panel Assets
- |--------------------------------------------------------------------------
- |
- | Feel free to add your own JS or CSS to the Statamic Control Panel.
- | https://statamic.dev/extending/control-panel#adding-css-and-js-assets
- |
- */
-
-// mix.js('resources/js/cp.js', 'public/vendor/app/js')
-//    .sass('resources/sass/cp.scss', 'public/vendor/app/css');
