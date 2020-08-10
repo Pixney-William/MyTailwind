@@ -7,7 +7,7 @@ module.exports = {
       './resources/js/**/*.js',
     ],
     options: {
-      whitelist: ['bg-red-500', 'px-4'],
+      whitelist: [],
     }
   },
     

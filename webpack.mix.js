@@ -1,4 +1,3 @@
-require('laravel-mix-purgecss');
 const mix = require('laravel-mix');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const svgSpriteDestination = "resources/views/partials/svgs.twig";
@@ -15,7 +14,7 @@ mix.js('resources/js/app.js', 'js')
 
 mix.options({
     processCssUrls: false,
-    postCss: [tailwindcss('./tailwind.js')],
+    postCss: [tailwindcss('./tailwind.config.js')],
 });
 
 mix.browserSync({
@@ -46,18 +45,9 @@ mix.webpackConfig({
     ]
 });
 
+mix.version();
+
 // Purge css 
 if (mix.inProduction()) {
-
-    mix.purgeCss({
-        enabled: true,
-        content: ['index.html', '**/*.js', '**/*.html', '**/*.vue'],
-        whitelist: [
-        ],
-        whitelistPatterns: [/red$/],
-        whitelistPatternsChildren: [/blue$/],
-        extensions: ['html', 'js', 'php', 'vue', 'twig'],
-
-    }).sourceMaps().version();
-
+    mix.sourceMaps().version();
 }
