@@ -18,7 +18,7 @@ mix.options({
 });
 
 mix.browserSync({
-    proxy: 'domain.com',
+    proxy: process.env.APP_URL,
     files: [
         'public/js/**/*.js',
         'public/css/**/*.css',
