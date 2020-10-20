@@ -1,7 +1,4 @@
 const mix = require('laravel-mix');
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
-const svgSpriteDestination = "resources/views/partials/svgs.twig";
-const svgSourcePath = "resources/svgs/*.svg";
 const tailwindcss = require('tailwindcss');
 
 
@@ -26,24 +23,6 @@ mix.browserSync({
     ]
 });
 
-// When we need to create svg sprites.
-mix.webpackConfig({
-    plugins: [
-        new SVGSpritemapPlugin(
-            svgSourcePath, {
-            output: {
-                filename: svgSpriteDestination,
-                svgo: {
-                    removeTitle: true,
-                }
-            },
-            sprite: {
-                prefix: false
-            }
-        }
-        )
-    ]
-});
 
 mix.version();
 
