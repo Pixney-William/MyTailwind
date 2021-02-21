@@ -1,0 +1,16 @@
+
+@tailwind base;
+@tailwind components;
+
+/*! purgecss start ignore */
+@import "./_variables.css";
+@import './itcss/1_generic/generic';
+@import './itcss/2_elements/elements';
+@import './itcss/3_objects/objects';
+@import './itcss/4_components/components';
+@import './itcss/5_atoms/atoms';
+@import './itcss/6_vendors/vendors'; 
+/*! purgecss end ignore */
+
+
+
