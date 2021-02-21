@@ -7,8 +7,8 @@ mix.disableSuccessNotifications();
 
 // Transpile js and sass
 mix.js('resources/js/app.js', 'js');
-mix.css('resources/css/app.css', 'css');
-mix.css('resources/css/utilities.css', 'css');
+mix.css('resources/postcss/app.css', 'css');
+mix.css('resources/postcss/utilities.css', 'css');
 mix.combine(['./public/css/app.css', './public/css/utilities.css'], './public/css/themes.css');
 
 mix.options({
